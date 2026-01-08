@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>International Business & Startup Entrepreneurship — Student Experiences</title>
+  <meta name="description" content="One-page program page with student testimonials, video stories, and a share-your-experience form." />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --surface2:#f6f7f9;
+      --text:#121212;
+      --muted:#5b6677;
+      --line:rgba(0,0,0,.10);
+
+      --accent:#8e001c;
+      --accentHover:#760018;
+      --accentSoft:rgba(142,0,28,.10);
+
+      --shadow: 0 10px 26px rgba(0,0,0,.10);
+      --radius: 16px;
+      --max: 1120px;
+
+      /* ONE image, used twice (top + bottom) */
+      --lines: url("assets/img/lines-bg.avif");
+
+      /* Control bottom lines */
+      --lines-bottom-offset: 0px;   /* move up: -80px, move down: +80px */
+      --lines-bottom-height: 520px; /* increase if cropped */
+      --lines-bottom-opacity: 1;    /* 0.6 for softer */
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    /* TOP background only */
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+
+      /* TOP lines are part of body background */
+      background:
+        var(--lines) center top / 100% auto no-repeat fixed,
+        var(--bg);
+
+      color:var(--text);
+      line-height:1.55;
+      min-height:100vh;
+      position:relative;
+    }
+
+    /*
+      Bottom background lines:
+      FIXED to the viewport so it DOES NOT move down when page length changes.
+    */
+    body::after{
+      content:"";
+      position:fixed;
+      left:0;
+      right:0;
+      bottom: calc(0px + var(--lines-bottom-offset));
+      height: var(--lines-bottom-height);
+      background: var(--lines) center bottom / 100% auto no-repeat;
+      transform: scaleY(-1);
+      transform-origin: bottom;
+      pointer-events:none;
+      z-index:0;
+      opacity: var(--lines-bottom-opacity);
+    }
+
+    /* Ensure content is above the bottom background */
+    header, main, footer{ position:relative; z-index:1; }
+
+    a{color:inherit}
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.92);
+      border-bottom:1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    .nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--accentSoft);
+      flex:0 0 auto;
+    }
+    .links{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+      font-size:14px;
+    }
+    .links a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .links a:hover{color:var(--text); border-color:var(--line); background: rgba(0,0,0,.03);}
+
+    /* IMPORTANT: keep bottom padding normal so page doesn't "grow" just to show bg */
+    main{max-width:var(--max); margin:0 auto; padding:24px 18px 70px;}
+    section{margin-top:18px;}
+
+    .panel{
+      background: rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Red intro panel */
+    .panel.red{
+      background: var(--accent);
+      color:#fff;
+      border-color: rgba(255,255,255,.18);
+    }
+    .panel.red .p,
+    .panel.red .small,
+    .panel.red a{
+      color: rgba(255,255,255,.92);
+    }
+    .panel.red b{ color:#fff; }
+    .panel.red .btn{
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      color:#fff;
+    }
+    .panel.red .btn:hover{ background: rgba(255,255,255,.14); }
+    .panel.red .btn.primary{
+      background:#fff;
+      color: var(--accent);
+      border-color: transparent;
+    }
+    .panel.red .btn.primary:hover{ background: rgba(255,255,255,.92); }
+
+    /* Thin red outline panels */
+    .panel.accent-outline{
+      border-color: rgba(142,0,28,.35);
+      box-shadow: 0 10px 26px rgba(142,0,28,.08);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .hero{grid-template-columns:1fr;} }
+
+    .heroCard{
+      position:relative;
+      overflow:hidden;
+      padding:0;
+    }
+    .heroMedia{
+      height: 240px;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.30), rgba(0,0,0,.05)),
+        url("assets/img/riga-stranis-university-card-e1731073216956-1360x400.jpg") center/cover no-repeat;
+      border-bottom:1px solid var(--line);
+    }
+    .heroBody{ padding:22px; }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line);
+      background: var(--surface2);
+      padding:6px 10px;
+      border-radius: 999px;
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.10;
+      letter-spacing:-.4px;
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    h3{
+      margin:14px 0 8px;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      margin:0 0 18px;
+      max-width: 70ch;
+    }
+    .p{color:var(--muted); margin:0;}
+
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
+    .btn{
+      appearance:none;
+      border:1px solid var(--line);
+      background: #fff;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius: 12px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:8px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(0,0,0,.02);}
+    .btn.primary{
+      border-color: transparent;
+      background: var(--accent);
+      color:#fff;
+    }
+    .btn.primary:hover{ background: var(--accentHover); }
+
+    .meta{display:grid; gap:12px;}
+    .kpi{
+      display:grid; grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:12px 12px;
+      background: var(--surface2);
+    }
+    .chip b{display:block; font-size:14px;}
+    .chip span{color:var(--muted); font-size:13px;}
+    .small{color:var(--muted); font-size:13px; margin:0;}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 920px){ .grid-2{grid-template-columns:1fr;} }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 980px){ .cards{grid-template-columns: 1fr 1fr;} }
+    @media (max-width: 600px){ .cards{grid-template-columns: 1fr;} }
+
+    .quote{
+      display:flex; flex-direction:column; gap:10px;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      min-height: 170px;
+    }
+    .quote p{margin:0; color:var(--text);}
+
+    .who{display:flex; gap:10px; align-items:center; margin-top:auto;}
+    .avatar{
+      width:34px; height:34px; border-radius:999px;
+      border: 1px solid rgba(0,0,0,.10);
+      overflow:hidden;
+      flex:0 0 auto;
+      background:#fff;
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .who div{display:flex; flex-direction:column; gap:2px;}
+    .who b{font-size:13px;}
+    .who span{font-size:12px; color:var(--muted);}
+
+    .contactRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .contactChip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: var(--surface2);
+      color: var(--muted);
+      font-size:12px;
+      text-decoration:none;
+      max-width:100%;
+    }
+    .contactChip:hover{ color:var(--text); background: rgba(0,0,0,.03); }
+
+    .galleryCard{ padding:0; overflow:hidden; min-height: unset; }
+    .galleryCard img{
+      width:100%;
+      height:210px;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Video cover */
+    .videoWrap{
+      width:100%;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background:#000;
+      aspect-ratio: 16/9;
+      position:relative;
+    }
+    .videoCover{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      inset:0;
+      cursor:pointer;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.10)),
+        var(--thumb) center/cover no-repeat;
+    }
+    .playBtn{
+      width:74px;
+      height:74px;
+      border-radius:999px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(0,0,0,.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 12px 24px rgba(0,0,0,.25);
+      transition: transform .12s ease;
+    }
+    .videoCover:hover .playBtn{ transform: translateY(-1px); }
+    .playTri{
+      width:0;height:0;
+      border-left: 18px solid var(--accent);
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+      margin-left: 4px;
+    }
+    .videoFrame{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    /* Video nav + meta */
+    .videoNav{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+    .videoMeta{
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:8px;
+    }
+
+    /* Programme booklet (white background + red border) */
+    .bookletBox{
+      margin-top:14px;
+      padding:14px;
+      border:1px solid rgba(142,0,28,.35);
+      border-radius: var(--radius);
+      background:#fff;
+    }
+    .bookletBox h3{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .bookletBox p{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .bookletBox .btn{
+      border-color: rgba(142,0,28,.45);
+      color: var(--accent);
+      background:#fff;
+    }
+    .bookletBox .btn:hover{ background: rgba(142,0,28,.06); }
+
+    .form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 920px){ .form{grid-template-columns:1fr;} }
+
+    input, textarea, select{
+      width:100%;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: #fff;
+      color:var(--text);
+      padding:12px 12px;
+      font-size:14px;
+      outline:none;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(142,0,28,.35);
+      box-shadow: 0 0 0 4px rgba(142,0,28,.10);
+    }
+    textarea{min-height:120px; resize:vertical; grid-column: 1/-1;}
+
+    .formRow{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .label{
+      font-size:12px;
+      color:var(--muted);
+    }
+    .fileInput{
+      padding:10px;
+      cursor:pointer;
+    }
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      margin:0;
+    }
+
+    .form-actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    .notice{color:var(--muted); font-size:12px; margin:0;}
+
+    footer{
+      max-width:var(--max);
+      margin:30px auto 0;
+      padding:18px;
+      color:var(--muted);
+      font-size:12px;
+      border-top:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    /* Footer logo increased 3x (34px -> 102px) */
+    .footerLogo{
+      width:102px;
+      height:102px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      flex:0 0 auto;
+      background:#fff;
+    }
+    .footerLogo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display:none;
+      gap:10px;
+      align-items:center;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      max-width: min(520px, calc(100% - 24px));
+      z-index:999;
+    }
+    .toast.show{display:flex;}
+    .toast small{color:var(--muted);}
+
+    ul{margin:10px 0 0 18px; color:var(--muted);}
+    li{margin:6px 0;}
+
+    /* Controls + actions */
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:12px;
+    }
+    .controls .control{ flex:1 1 220px; }
+
+    .actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid var(--line);
+    }
+    .btn.sm{
+      padding:8px 10px;
+      border-radius:10px;
+      font-size:13px;
+      font-weight:800;
+    }
+    .btn.danger{
+      border-color: rgba(142,0,28,.25);
+      background: rgba(142,0,28,.06);
+      color: var(--accent);
+    }
+    .btn.danger:hover{ background: rgba(142,0,28,.10); }
+
+    .editGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 600px){ .editGrid{grid-template-columns:1fr;} }
+    .editArea{ margin-top:10px; }
+    .editArea textarea{ min-height: 110px; }
+
+    /* Contact layout with logo on the right */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:start;
+      margin-top:10px;
+    }
+    @media (max-width: 920px){ .contactGrid{ grid-template-columns:1fr; } }
+
+    /* Logo box sized like your rectangle */
+    .contactLogoBox{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background:#fff;
+      padding:18px;
+      height: 260px;
+      width: 100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .contactLogoBox img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> International Business & Startup Entrepreneurship</div>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#why">Why</a>
+        <a href="#gallery">Photos</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#video">Video</a>
+        <a href="#share">Share</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.rsu.lv" target="_blank" rel="noopener">Official site ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Red intro panel -->
+    <section aria-label="Page introduction">
+      <div class="panel red">
+        <p style="margin:0; font-size:15px; line-height:1.65;">
+          This page brings together real student and graduate experiences from the <b>International Business &amp; Startup Entrepreneurship</b> program.
+          Explore testimonials, photos, and video stories to understand what studying is like in practice, and if you’re new, you can reach out to experienced
+          students via the shared social links to ask questions and get honest advice.
+          <br><br>
+          If you’re a current student or alum, add your own experience (and optional contact details) to help future students make confident, informed choices.
+        </p>
+      </div>
+    </section>
+
+    <section class="hero" id="top">
+      <div class="panel heroCard">
+        <div class="heroMedia" aria-label="Hero background image"></div>
+        <div class="heroBody">
+          <div class="pill">Student experiences • Program overview • One-page format</div>
+          <h1>International Business & Startup Entrepreneurship</h1>
+          <p class="sub">
+            A practical program for future founders and business professionals who want to build startups,
+            work internationally, and develop an innovation-driven mindset - backed by real student experiences.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#testimonials">Read student experiences →</a>
+            <a class="btn" href="#share">Share your experience</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel meta">
+        <h2 style="margin:0 0 8px;">Snapshot</h2>
+        <div class="kpi">
+          <div class="chip"><b>Focus</b><span>International business • Entrepreneurship • Innovation</span></div>
+          <div class="chip"><b>Format</b><span>Hands-on projects & teamwork</span></div>
+          <div class="chip"><b>Outcome</b><span>Startup-ready skills & global perspective</span></div>
+          <div class="chip"><b>Audience</b><span>Applicants and prospective students</span></div>
+        </div>
+        <p class="small">
+          This page is designed to help prospective students make an informed decision based on real experiences.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid-2" id="about">
+      <div class="panel accent-outline">
+        <h2>About the program</h2>
+        <p class="p">
+          The program combines international business fundamentals with startup entrepreneurship.
+          Students build practical skills through projects, teamwork, and real-world problem solving.
+        </p>
+        <ul>
+          <li>Business strategy and international markets</li>
+          <li>Startup ideation, validation, and go-to-market</li>
+          <li>Innovation, leadership, and communication</li>
+          <li>Project-based learning and collaboration</li>
+        </ul>
+      </div>
+
+      <div class="panel accent-outline" id="why">
+        <h2>Why choose this program</h2>
+        <p class="p">Key benefits for applicants:</p>
+        <ul>
+          <li><b>Practical focus:</b> learn by doing</li>
+          <li><b>Entrepreneurial mindset:</b> from idea to execution</li>
+          <li><b>International perspective:</b> global business context</li>
+          <li><b>Career pathways:</b> startups, innovation, business development</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="gallery">
+      <h2>Program highlights</h2>
+      <p class="p">A visual snapshot of the learning environment and student life.</p>
+
+      <div class="cards" style="margin-top:14px;">
+        <article class="quote galleryCard">
+          <img src="assets/img/Riga-Stradins-University-Study-Medicine-in-English.jpg" alt="Program photo 1" />
+        </article>
+        <article class="quote galleryCard">
+          <img src="assets/img/rsu_konsula_iela_2024jun.jpg" alt="Program photo 2" />
+        </article>
+        <article class="quote galleryCard">
+          <img src="assets/img/rsu-izlaidums.jpg" alt="Program photo 3" />
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="testimonials">
+      <h2>Student experiences & testimonials</h2>
+      <p class="p">
+        Short stories from students and graduates about the program, projects, and outcomes.
+      </p>
+
+      <div class="cards">
+        <article class="quote">
+          <p>“The program pushed me to think like a founder. Projects felt realistic and built confidence.”</p>
+          <div class="who">
+            <div class="avatar"><img src="assets/img/avatars/1132239.jpg" alt="Avatar" loading="lazy"></div>
+            <div><b>Anna K.</b><span>Graduate • Class of 2024</span></div>
+          </div>
+        </article>
+
+        <article class="quote">
+          <p>“Strong international vibe - teamwork, pitching, and understanding markets beyond Latvia.”</p>
+          <div class="who">
+            <div class="avatar"><img src="assets/img/avatars/5ed92e5683e335ef703a202173ede93f.jpg" alt="Avatar" loading="lazy"></div>
+            <div><b>Mark R.</b><span>Current student</span></div>
+          </div>
+        </article>
+
+        <article class="quote">
+          <p>“The balance of fundamentals + startup thinking made my career direction much clearer.”</p>
+          <div class="who">
+            <div class="avatar"><img src="assets/img/avatars/c02519d5f19fff9bd43a2690ffff7bb2.jpg" alt="Avatar" loading="lazy"></div>
+            <div><b>Elina S.</b><span>Graduate • Entrepreneur</span></div>
+          </div>
+        </article>
+
+        <article class="quote">
+          <p>“Learning to validate ideas and communicate them was the biggest value. Pitching became natural.”</p>
+          <div class="who">
+            <div class="avatar"><img src="assets/img/avatars/porait-cute-boy-cafe_23-2148436119.avif" alt="Avatar" loading="lazy"></div>
+            <div><b>David P.</b><span>Graduate • Business Development</span></div>
+          </div>
+        </article>
+
+        <article class="quote">
+          <p>“If you want practical skills and a community of like-minded people, this program is a solid choice.”</p>
+          <div class="who">
+            <div class="avatar"><img src="assets/img/avatars/pngtree-an-avatar-of-a-man-with-a-beard-and-tie-image_2960737.jpg" alt="Avatar" loading="lazy"></div>
+            <div><b>Kristine L.</b><span>Current student</span></div>
+          </div>
+        </article>
+
+        <article class="quote">
+          <p>“You build a portfolio of projects you can show to employers or investors.”</p>
+          <div class="who">
+            <div class="avatar"><img src="assets/img/avatars/woman1.jpeg" alt="Avatar" loading="lazy"></div>
+            <div><b>Alex M.</b><span>Graduate • Innovation track</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Video: booklet moved LEFT under Video stories -->
+    <section class="grid-2" id="video">
+      <div class="panel">
+        <h2>Video stories</h2>
+        <p class="p">
+          Student-made videos about the program, projects, and learning experience.
+        </p>
+        <ul>
+          <li>Why students chose the program</li>
+          <li>Team projects and pitching</li>
+          <li>What students learned and achieved</li>
+        </ul>
+
+        <div class="bookletBox">
+          <h3>You can also explore programme booklet</h3>
+          <p>
+            Detailed information about the International Business &amp; Startup Entrepreneurship programme,
+            structure, courses and learning outcomes.
+          </p>
+          <a
+            class="btn sm"
+            href="https://www.rsu.lv/sites/default/files/imce/ibse_booklet_2023.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            Open programme booklet (PDF) ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="videoWrap" id="videoWrap" aria-label="Video player"></div>
+
+        <div class="videoNav" aria-label="Video navigation">
+          <button class="btn sm" type="button" id="prevVideo" aria-label="Previous video">◀ Prev</button>
+          <button class="btn sm" type="button" id="nextVideo" aria-label="Next video">Next ▶</button>
+        </div>
+
+        <div class="videoMeta" id="videoMeta" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="share">
+      <h2>Share your experience</h2>
+      <p class="p">
+        If you are a current student or a graduate, share your experience to help future applicants.
+      </p>
+
+      <form class="form" id="experienceForm">
+        <input type="text" name="name" placeholder="Your name (or initials)" required />
+        <input type="text" name="status" placeholder="Status (e.g., Graduate 2025 / Current student)" required />
+
+        <div class="formRow">
+          <div class="label">Avatar (optional)</div>
+          <input class="fileInput" type="file" name="avatarFile" id="avatarFile" accept="image/*" />
+          <p class="hint">Tip: use a small image (recommended ≤ 200 KB).</p>
+        </div>
+
+        <div class="formRow">
+          <div class="label">LinkedIn (optional)</div>
+          <input type="url" name="linkedin" placeholder="https://www.linkedin.com/in/username" />
+        </div>
+
+        <div class="formRow">
+          <div class="label">Instagram (optional)</div>
+          <input type="url" name="instagram" placeholder="https://www.instagram.com/username" />
+        </div>
+
+        <div class="formRow">
+          <div class="label">Facebook (optional)</div>
+          <input type="url" name="facebook" placeholder="https://www.facebook.com/username" />
+        </div>
+
+        <textarea name="message" placeholder="Your experience" required></textarea>
+
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Submit experience</button>
+          <button class="btn" type="button" id="downloadBtn">Download submissions (.txt)</button>
+          <p class="notice">Submissions are saved on this device in the browser.</p>
+        </div>
+      </form>
+
+      <div class="controls" aria-label="Testimonials controls">
+        <div class="control">
+          <input id="searchInput" type="text" placeholder="Search in submissions…" />
+        </div>
+        <div class="control">
+          <select id="statusFilter" aria-label="Filter by status">
+            <option value="">All statuses</option>
+            <option value="graduate">Graduate</option>
+            <option value="current">Current student</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-actions" style="margin:0;">
+          <button class="btn" type="button" id="clearFiltersBtn">Clear filters</button>
+        </div>
+      </div>
+
+      <div class="cards" id="localTestimonials" style="margin-top:14px;"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Learn more</h2>
+      <p class="p">
+        Explore the program curriculum, admission requirements, and study opportunities on the official university website.
+      </p>
+      <div class="cta-row" style="margin-top:12px;">
+        <a class="btn primary" href="https://www.rsu.lv" target="_blank" rel="noopener">Official university website ↗</a>
+        <a class="btn" href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <section class="panel" id="contact">
+      <h2>Contact Information</h2>
+
+      <div class="contactGrid">
+        <div>
+          <p class="p"><b>Faculty of Social Sciences</b></p>
+          <p class="p">
+            9c Kuldīgas iela, Riga<br>
+            Room: Ground, 1st &amp; 2nd floors
+          </p>
+
+          <p class="p" style="margin-top:10px;">
+            Phone: <a href="tel:+37167062662">+37167062662</a><br>
+            E-mail: <a href="mailto:szf@rsu.lv">szf@rsu.lv</a>
+          </p>
+
+          <div class="cta-row" style="margin-top:10px;">
+            <a class="btn sm" href="https://maps.google.com/?q=9c+Kuld%C4%ABgas+iela,+Riga" target="_blank" rel="noopener">
+              View map ↗
+            </a>
+          </div>
+
+          <h3>Working hours</h3>
+          <p class="p">
+            Mon–Thu, 8:30–16:30<br>
+            Fri, 8:30–15:30
+          </p>
+        </div>
+
+        <div class="contactLogoBox" aria-label="RSU logo">
+          <img src="assets/img/rsu_logo_en.png" alt="Rīga Stradiņš University logo" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="footerLogo"><img src="assets/img/rsu-izlaidums.jpg" alt="Logo" /></span>
+      <span>© International Business & Startup Entrepreneurship • Student experiences page</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">
+    <div style="width:10px;height:10px;border-radius:99px;background:var(--accent);"></div>
+    <div>
+      <div id="toastTitle" style="font-weight:800;font-size:13px;">Saved</div>
+      <small id="toastText">Your experience was added.</small>
+    </div>
+  </div>
+
+  <script>
+    // --- Video slider (prev/next) ---
+    (function initVideoSlider(){
+      const videos = [
+        { id: "H2UMQitp8Bo", label: "Video 1" },
+        { id: "K9DEz877Wwk", label: "Video 2" }
+      ];
+
+      let current = 0;
+
+      const wrap = document.getElementById("videoWrap");
+      const meta = document.getElementById("videoMeta");
+      const prevBtn = document.getElementById("prevVideo");
+      const nextBtn = document.getElementById("nextVideo");
+
+      function setMeta(){
+        if(!meta) return;
+        meta.textContent = `${videos[current].label} (${current + 1} / ${videos.length})`;
+      }
+
+      function renderCover(){
+        const vid = videos[current]?.id;
+        const thumb = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
+
+        wrap.innerHTML = `
+          <div class="videoCover" style="--thumb:url('${thumb}')" role="button" aria-label="Play video">
+            <div class="playBtn"><div class="playTri"></div></div>
+          </div>
+        `;
+
+        wrap.querySelector(".videoCover").addEventListener("click", () => {
+          wrap.innerHTML = `
+            <iframe
+              class="videoFrame"
+              src="https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0&modestbranding=1"
+              title="Student video about the program"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          `;
+        });
+
+        setMeta();
+      }
+
+      function prev(){
+        current = (current - 1 + videos.length) % videos.length;
+        renderCover();
+      }
+
+      function next(){
+        current = (current + 1) % videos.length;
+        renderCover();
+      }
+
+      prevBtn?.addEventListener("click", prev);
+      nextBtn?.addEventListener("click", next);
+
+      window.addEventListener("keydown", (e)=>{
+        if(e.key === "ArrowLeft") prev();
+        if(e.key === "ArrowRight") next();
+      });
+
+      renderCover();
+    })();
+
+    // --- Local testimonials ---
+    const form = document.getElementById('experienceForm');
+    const box = document.getElementById('localTestimonials');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+    const avatarFileInput = document.getElementById('avatarFile');
+
+    const AVATARS = [
+      "assets/img/avatars/1132239.jpg",
+      "assets/img/avatars/5ed92e5683e335ef703a202173ede93f.jpg",
+      "assets/img/avatars/c02519d5f19fff9bd43a2690ffff7bb2.jpg",
+      "assets/img/avatars/porait-cute-boy-cafe_23-2148436119.avif",
+      "assets/img/avatars/pngtree-an-avatar-of-a-man-with-a-beard-and-tie-image_2960737.jpg",
+      "assets/img/avatars/woman1.jpeg"
+    ];
+
+    const STORAGE_KEY = 'ibse_testimonials_clean_v3';
+
+    function showToast(title, text){
+      const toast = document.getElementById('toast');
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastText').textContent = text;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2600);
+    }
+
+    function uid(){
+      return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'","&#039;");
+    }
+
+    function safeUrl(u){
+      const s = String(u || '').trim();
+      if(!s) return '';
+      try{
+        const url = new URL(s);
+        if(url.protocol !== 'http:' && url.protocol !== 'https:') return '';
+        return url.toString();
+      }catch(e){
+        return '';
+      }
+    }
+
+    function pickAvatarById(id){
+      let h = 0;
+      const s = String(id || '');
+      for(let i=0;i<s.length;i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+      return AVATARS[h % AVATARS.length];
+    }
+
+    function load(){
+      try{
+        const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        let changed = false;
+        const fixed = raw.map(it=>{
+          const obj = (it && typeof it === 'object') ? it : {};
+          if(!obj.id){ obj.id = uid(); changed = true; }
+          if(!obj.avatarSrc){ obj.avatarSrc = pickAvatarById(obj.id); changed = true; }
+          obj.name = (obj.name || '').toString();
+          obj.status = (obj.status || '').toString();
+          obj.message = (obj.message || '').toString();
+          obj.createdAt = obj.createdAt || new Date().toISOString();
+          obj.linkedin = safeUrl(obj.linkedin);
+          obj.instagram = safeUrl(obj.instagram);
+          obj.facebook = safeUrl(obj.facebook);
+          if(obj.userAvatarDataUrl && typeof obj.userAvatarDataUrl !== 'string'){ obj.userAvatarDataUrl = ''; changed = true; }
+          return obj;
+        });
+        if(changed) localStorage.setItem(STORAGE_KEY, JSON.stringify(fixed));
+        return fixed;
+      }catch(e){
+        return [];
+      }
+    }
+
+    function save(items){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }
+
+    function classifyStatus(s){
+      const v = String(s || '').toLowerCase();
+      if(v.includes('graduate') || v.includes('alumni') || v.includes('class of')) return 'graduate';
+      if(v.includes('current') || v.includes('student')) return 'current';
+      return 'other';
+    }
+
+    function getFilters(){
+      return {
+        q: (searchInput?.value || '').trim().toLowerCase(),
+        status: (statusFilter?.value || '').trim()
+      };
+    }
+
+    function applyFilters(items){
+      const { q, status } = getFilters();
+      return items.filter(it=>{
+        const hay = `${it.name} ${it.status} ${it.message}`.toLowerCase();
+        const matchQ = !q || hay.includes(q);
+        const matchStatus = !status || classifyStatus(it.status) === status;
+        return matchQ && matchStatus;
+      });
+    }
+
+    function contactChips(item){
+      const chips = [];
+      if(item.linkedin) chips.push(`<a class="contactChip" href="${escapeHtml(item.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a>`);
+      if(item.instagram) chips.push(`<a class="contactChip" href="${escapeHtml(item.instagram)}" target="_blank" rel="noopener">Instagram ↗</a>`);
+      if(item.facebook) chips.push(`<a class="contactChip" href="${escapeHtml(item.facebook)}" target="_blank" rel="noopener">Facebook ↗</a>`);
+      if(chips.length === 0) return '';
+      return `<div class="contactRow">${chips.join('')}</div>`;
+    }
+
+    function render(){
+      const items = load();
+      const filtered = applyFilters(items);
+
+      box.innerHTML = '';
+      if(filtered.length === 0) return;
+
+      filtered.slice().reverse().forEach(item=>{
+        const card = document.createElement('article');
+        card.className = 'quote';
+        card.dataset.id = item.id;
+
+        const avatarSrc = item.userAvatarDataUrl ? item.userAvatarDataUrl : (item.avatarSrc || pickAvatarById(item.id));
+
+        card.innerHTML = `
+          <div class="viewMode">
+            <p>“${escapeHtml(item.message)}”</p>
+            <div class="who">
+              <div class="avatar"><img src="${escapeHtml(avatarSrc)}" alt="Avatar" loading="lazy"></div>
+              <div><b>${escapeHtml(item.name)}</b><span>${escapeHtml(item.status)}</span></div>
+            </div>
+            ${contactChips(item)}
+            <div class="actions">
+              <button class="btn sm" type="button" data-action="edit">Edit</button>
+              <button class="btn sm danger" type="button" data-action="delete">Delete</button>
+            </div>
+          </div>
+
+          <div class="editMode" style="display:none;">
+            <div class="editGrid">
+              <input type="text" data-field="name" value="${escapeHtml(item.name)}" />
+              <input type="text" data-field="status" value="${escapeHtml(item.status)}" />
+            </div>
+
+            <div class="editGrid" style="margin-top:10px;">
+              <input type="url" data-field="linkedin" placeholder="LinkedIn URL" value="${escapeHtml(item.linkedin || '')}" />
+              <input type="url" data-field="instagram" placeholder="Instagram URL" value="${escapeHtml(item.instagram || '')}" />
+            </div>
+            <div class="editGrid" style="margin-top:10px;">
+              <input type="url" data-field="facebook" placeholder="Facebook URL" value="${escapeHtml(item.facebook || '')}" />
+              <input type="file" data-field="avatarFileEdit" accept="image/*" />
+            </div>
+            <p class="hint" style="margin-top:6px;">Optional: upload a new avatar (recommended ≤ 200 KB).</p>
+
+            <div class="editArea">
+              <textarea data-field="message">${escapeHtml(item.message)}</textarea>
+            </div>
+
+            <div class="actions">
+              <button class="btn sm primary" type="button" data-action="save">Save</button>
+              <button class="btn sm" type="button" data-action="cancel">Cancel</button>
+            </div>
+          </div>
+        `;
+
+        box.appendChild(card);
+      });
+    }
+
+    function fileToDataUrl(file, maxBytes){
+      return new Promise((resolve, reject)=>{
+        if(!file) return resolve('');
+        if(file.size > maxBytes) return reject(new Error('File too large'));
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result || ''));
+        reader.onerror = () => reject(new Error('Read failed'));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const data = new FormData(form);
+
+      const newId = uid();
+      const entry = {
+        id: newId,
+        avatarSrc: pickAvatarById(newId),
+        userAvatarDataUrl: '',
+        name: (data.get('name') || '').toString().trim(),
+        status: (data.get('status') || '').toString().trim(),
+        message: (data.get('message') || '').toString().trim(),
+        linkedin: safeUrl(data.get('linkedin')),
+        instagram: safeUrl(data.get('instagram')),
+        facebook: safeUrl(data.get('facebook')),
+        createdAt: new Date().toISOString()
+      };
+
+      if(!entry.name || !entry.status || !entry.message){
+        showToast('Missing fields', 'Please fill in all required fields.');
+        return;
+      }
+
+      try{
+        const file = avatarFileInput?.files?.[0] || null;
+        if(file){
+          entry.userAvatarDataUrl = await fileToDataUrl(file, 220 * 1024);
+        }
+      }catch(err){
+        showToast('Avatar not saved', 'Image is too large. Please upload a smaller file.');
+        entry.userAvatarDataUrl = '';
+      }
+
+      const items = load();
+      items.push(entry);
+      save(items);
+
+      form.reset();
+      render();
+      showToast('Saved', 'Thank you for sharing your experience.');
+    });
+
+    box.addEventListener('click', async (e)=>{
+      const btn = e.target.closest('button[data-action]');
+      if(!btn) return;
+
+      const card = e.target.closest('article.quote');
+      if(!card) return;
+
+      const id = card.dataset.id;
+      const action = btn.dataset.action;
+
+      const items = load();
+      const idx = items.findIndex(x=>x.id === id);
+      if(idx === -1) return;
+
+      const view = card.querySelector('.viewMode');
+      const edit = card.querySelector('.editMode');
+
+      if(action === 'delete'){
+        const ok = confirm('Delete this submission? This cannot be undone.');
+        if(!ok) return;
+        items.splice(idx, 1);
+        save(items);
+        render();
+        showToast('Deleted', 'Submission removed.');
+        return;
+      }
+
+      if(action === 'edit'){
+        view.style.display = 'none';
+        edit.style.display = 'block';
+        return;
+      }
+
+      if(action === 'cancel'){
+        edit.style.display = 'none';
+        view.style.display = 'block';
+        return;
+      }
+
+      if(action === 'save'){
+        const name = (card.querySelector('[data-field="name"]')?.value || '').trim();
+        const status = (card.querySelector('[data-field="status"]')?.value || '').trim();
+        const message = (card.querySelector('[data-field="message"]')?.value || '').trim();
+
+        const linkedin = safeUrl(card.querySelector('[data-field="linkedin"]')?.value);
+        const instagram = safeUrl(card.querySelector('[data-field="instagram"]')?.value);
+        const facebook = safeUrl(card.querySelector('[data-field="facebook"]')?.value);
+
+        if(!name || !status || !message){
+          showToast('Missing fields', 'Please fill in name, status and message.');
+          return;
+        }
+
+        let userAvatarDataUrl = items[idx].userAvatarDataUrl || '';
+        const fileInput = card.querySelector('[data-field="avatarFileEdit"]');
+        const file = fileInput?.files?.[0] || null;
+
+        if(file){
+          try{
+            userAvatarDataUrl = await fileToDataUrl(file, 220 * 1024);
+          }catch(err){
+            showToast('Avatar not saved', 'Image is too large. Please upload a smaller file.');
+          }
+        }
+
+        items[idx] = {
+          ...items[idx],
+          name, status, message,
+          linkedin, instagram, facebook,
+          userAvatarDataUrl,
+          updatedAt: new Date().toISOString()
+        };
+        save(items);
+        render();
+        showToast('Updated', 'Changes saved.');
+      }
+    });
+
+    searchInput?.addEventListener('input', ()=> render());
+    statusFilter?.addEventListener('change', ()=> render());
+    clearFiltersBtn?.addEventListener('click', ()=>{
+      if(searchInput) searchInput.value = '';
+      if(statusFilter) statusFilter.value = '';
+      render();
+      showToast('Cleared', 'Filters reset.');
+    });
+
+    downloadBtn.addEventListener('click', ()=>{
+      const items = load();
+      if(items.length === 0){
+        showToast('No submissions', 'There is nothing to download yet.');
+        return;
+      }
+
+      const lines = items.map((i, idx)=>(
+        `#${idx+1}\nName: ${i.name}\nStatus: ${i.status}\nDate: ${i.createdAt}\nLinkedIn: ${i.linkedin || ''}\nInstagram: ${i.instagram || ''}\nFacebook: ${i.facebook || ''}\nMessage:\n${i.message}\n`
+      ));
+      const blob = new Blob([lines.join('\n---\n\n')], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'student-experiences.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast('Downloaded', 'File saved.');
+    });
+
+    render();
+  </script>
+</body>
+</html>
